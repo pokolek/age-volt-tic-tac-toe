@@ -49,7 +49,8 @@ export default function Home() {
           src={avLogo}
           alt="I hope you will hire me :)"
           style={{
-            filter: appTheme.palette.mode === "dark" ? "invert(0)" : "invert(1)",
+            filter:
+              appTheme.palette.mode === "dark" ? "invert(0)" : "invert(1)",
           }}
           width={333}
         />

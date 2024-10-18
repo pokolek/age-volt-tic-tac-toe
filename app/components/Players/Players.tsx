@@ -5,7 +5,7 @@ interface PlayersProps {
 }
 
 export default function Players({ activePlayer }: PlayersProps) {
-  const theme = useTheme(); // Access the current theme
+  const theme = useTheme();
 
   return (
     <Stack
@@ -16,11 +16,10 @@ export default function Players({ activePlayer }: PlayersProps) {
       justifyContent="center"
       sx={{ width: "100%" }}
     >
-      {/* Player 1 Box */}
       <Box
         component="section"
         sx={{
-          p: { xs: 2, sm: 3 }, // More padding for a cleaner look
+          p: { xs: 2, sm: 3 },
           border:
             activePlayer === "X"
               ? `2px solid ${theme.palette.primary.main}`
@@ -37,17 +36,9 @@ export default function Players({ activePlayer }: PlayersProps) {
               : theme.palette.text.primary,
           width: { xs: "100%", sm: "auto" },
           textAlign: "center",
-          borderRadius: "12px", // Add rounded corners
-          boxShadow: "0 4px 10px rgba(0,0,0,0.1)", // Soft shadow for elevation
-          transition: "background-color 0.3s ease, border 0.3s ease", // Smooth transitions
-          ":hover": {
-            backgroundColor:
-              activePlayer === "X"
-                ? theme.palette.mode === "dark"
-                  ? theme.palette.primary.main
-                  : theme.palette.primary.dark
-                : theme.palette.action.hover,
-          },
+          borderRadius: "12px",
+          boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+          transition: "background-color 0.3s, border 0.3s ",
         }}
       >
         <Stack
@@ -70,8 +61,6 @@ export default function Players({ activePlayer }: PlayersProps) {
           </Typography>
         </Stack>
       </Box>
-
-      {/* Player 2 Box */}
       <Box
         component="section"
         sx={{
@@ -92,17 +81,9 @@ export default function Players({ activePlayer }: PlayersProps) {
               : theme.palette.text.primary,
           width: { xs: "100%", sm: "auto" },
           textAlign: "center",
-          borderRadius: "12px", // Add rounded corners
-          boxShadow: "0 4px 10px rgba(0,0,0,0.1)", // Soft shadow for elevation
-          transition: "background-color 0.3s ease, border 0.3s ease", // Smooth transitions
-          ":hover": {
-            backgroundColor:
-              activePlayer === "O"
-                ? theme.palette.mode === "dark"
-                  ? theme.palette.primary.main
-                  : theme.palette.primary.dark
-                : theme.palette.action.hover,
-          },
+          borderRadius: "12px",
+          boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+          transition: "background-color 0.3s ease, border 0.3s ease",
         }}
       >
         <Stack
