@@ -47,11 +47,11 @@ const GameBoard = () => {
   return (
     <>
       <Players activePlayer={getActivePlayer(gameTurns)} />
-      <Grid container spacing={1} justifyContent="center">
+      <Grid container spacing={{ xs: 4, sm: 2, md: 2, lg: 2 }} justifyContent="center">
         {gameBoard.map((row, rowIndex) => (
           <Grid container key={rowIndex} justifyContent="center">
             {row.map((playerSymbol, colIndex) => (
-              <Grid key={colIndex} size={{ xs: 8, sm: 8, md: 8, lg: 8 }}>
+              <Grid key={colIndex} size={{ xs: 4, sm: 8, md: 8, lg: 8 }}>
                 <Button
                   variant="outlined"
                   fullWidth
