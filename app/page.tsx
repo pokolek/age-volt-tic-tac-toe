@@ -22,9 +22,16 @@ export default function Home() {
   const appTheme = createTheme({
     palette: {
       mode: mode,
+      action: {
+        disabledBackground: mode === "light" 
+          ? "rgba(25, 118, 210, 0.12)"
+          : "rgba(25, 118, 210, 0.5)",
+        disabled: mode === "light" 
+          ? "rgba(25, 118, 210, 1)"
+          : "rgba(255, 255, 255, 1)",
+      },
     },
   });
-
   const handleChange = () => {
     setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
   };
@@ -49,8 +56,7 @@ export default function Home() {
           src={avLogo}
           alt="I hope you will hire me :)"
           style={{
-            filter:
-              appTheme.palette.mode === "dark" ? "invert(0)" : "invert(1)",
+            filter: appTheme.palette.mode === "dark" ? "invert(0)" : "invert(1)",
           }}
           width={333}
         />
