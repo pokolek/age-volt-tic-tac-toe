@@ -13,6 +13,8 @@ import GameBoard from "./components/GameBoard/GameBoard";
 import { useState } from "react";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
+import Image from "next/image";
+import avLogo from "./public/av-logo.svg";
 
 export default function Home() {
   const [mode, setMode] = useState<"light" | "dark">("light");
@@ -42,13 +44,15 @@ export default function Home() {
           textAlign: "center",
         }}
       >
-        <Typography
-          variant="h3"
-          gutterBottom
-          sx={{ fontSize: { xs: "24px", sm: "32px", md: "36px" } }}
-        >
-          AgeVolt
-        </Typography>
+        <Image
+          priority
+          src={avLogo}
+          alt="I hope you will hire me :)"
+          style={{
+            filter: appTheme.palette.mode === "dark" ? "invert(0)" : "invert(1)",
+          }}
+          width={333}
+        />
 
         <Typography
           variant="h1"
