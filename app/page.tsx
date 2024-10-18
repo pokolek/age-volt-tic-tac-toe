@@ -32,6 +32,7 @@ export default function Home() {
       },
     },
   });
+
   const handleChange = () => {
     setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
   };
@@ -52,7 +53,6 @@ export default function Home() {
         }}
       >
         <Image
-          priority
           src={avLogo}
           alt="I hope you will hire me :)"
           style={{
@@ -82,7 +82,6 @@ export default function Home() {
           <Switch
             checked={mode === "dark"}
             onChange={handleChange}
-            inputProps={{ "aria-label": "controlled" }}
             sx={{ mb: 2 }}
           />
         </Stack>
