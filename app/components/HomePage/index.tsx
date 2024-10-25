@@ -1,7 +1,7 @@
 'use client';
 
 import { useSelector } from 'react-redux';
-import StationList from './../StationList/StationList';
+import StationList from '../StationList';
 import { RootState } from '@/lib/store';
 
 const HomePage = () => {

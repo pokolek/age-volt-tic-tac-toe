@@ -1,6 +1,6 @@
 'use client';
 
-import { DataGrid, GridColDef, GridEventListener  } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridEventListener, GridToolbar  } from '@mui/x-data-grid';
 import { useFetchStationsQuery } from '../../../lib/features/api/stationsApi';
 import { useState } from 'react';
 
@@ -11,7 +11,6 @@ const StationList = () => {
   const [pageSize, setPageSize] = useState<number>(25);
   const router = useRouter();
   const { data, error, isFetching } = useFetchStationsQuery({ page, size: pageSize });
-  console.log(isFetching)
 
   const columns: GridColDef[] = [
     {
@@ -115,6 +114,7 @@ const StationList = () => {
     <DataGrid
       rows={rows}
       columns={columns}
+      pageSizeOptions={[5, 10, 25, 50, 100]}
       pagination
       paginationMode="server"
       rowCount={data?.totalElements ?? 0}
@@ -122,11 +122,15 @@ const StationList = () => {
         page: page,
         pageSize: pageSize,
       }}
+      disableColumnSorting 
       onPaginationModelChange={(model) => {
         setPage(model.page);
         setPageSize(model.pageSize);
       }}
       onRowClick={handleRowClick}
+      slots={{
+        toolbar: GridToolbar,
+      }}
     />
   );
 };

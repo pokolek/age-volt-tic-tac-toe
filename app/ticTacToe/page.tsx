@@ -9,7 +9,7 @@ import {
   CssBaseline,
   Stack,
 } from "@mui/material";
-import GameBoard from "../components/GameBoard/GameBoard";
+import GameBoard from "../components/GameBoard";
 import { useState } from "react";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";

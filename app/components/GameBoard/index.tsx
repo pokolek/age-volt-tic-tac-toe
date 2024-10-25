@@ -3,9 +3,9 @@ import React, { useState, useEffect, useRef } from "react";
 import Grid from "@mui/material/Grid2";
 import { Button, CircularProgress, useTheme } from "@mui/material";
 import { getWinner, getActivePlayer, getGameBoard } from "@/app/utils/utils";
-import GameOver from "../GameOver/GameOver";
+import GameOver from "../GameOver";
 import { INITIAL_GAME_BOARD, PLAYERS } from "../../constants/constants";
-import Players from "../Players/Players";
+import Players from "../Players";
 import GameTurn from "@/app/types/gameTurn";
 
 const GameBoard = () => {
