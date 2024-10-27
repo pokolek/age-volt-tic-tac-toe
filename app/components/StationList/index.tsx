@@ -1,137 +1,46 @@
-'use client';
+"use client";
 
-import { DataGrid, GridColDef, GridEventListener, GridToolbar  } from '@mui/x-data-grid';
-import { useFetchStationsQuery } from '../../../lib/features/api/stationsApi';
-import { useState } from 'react';
-
-import { useRouter } from 'next/navigation';
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { useFetchStationsQuery } from "../../../lib/features/api/stationsApi";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import createColumns from "@/app/utils/columns";
+import { Box } from "@mui/material";
 
 const StationList = () => {
   const [page, setPage] = useState<number>(0);
   const [pageSize, setPageSize] = useState<number>(25);
-  const router = useRouter();
-  const { data, error, isFetching } = useFetchStationsQuery({ page, size: pageSize });
-
-  const columns: GridColDef[] = [
-    {
-      field: 'id',
-      headerName: 'ID',
-      width: 250,
-    },
-    {
-      field: 'stationName',
-      headerName: 'Station Name',
-      width: 200,
-    },
-    {
-      field: 'serialNumber',
-      headerName: 'Serial Number',
-      width: 150,
-    },
-    {
-      field: 'state',
-      headerName: 'State',
-      width: 150,
-    },
-    {
-      field: 'sectionName',
-      headerName: 'Section Name',
-      width: 200,
-    },
-    {
-      field: 'currencyStation',
-      headerName: 'Station Currency',
-      width: 150,
-    },
-    {
-      field: 'currencyUser',
-      headerName: 'User Currency',
-      width: 150,
-    },
-    {
-      field: 'hardwareManufacturer',
-      headerName: 'Manufacturer',
-      width: 200,
-    },
-    {
-      field: 'model',
-      headerName: 'Model',
-      width: 200,
-    },
-    {
-      field: 'coordinate',
-      headerName: 'Coordinates (lat, lon)',
-      width: 200,
-    },
-    {
-      field: 'connectorsCount',
-      headerName: 'Connectors Count',
-      width: 150,
-    },
-    {
-      field: 'connectorsAvailableCount',
-      headerName: 'Available Connectors',
-      width: 150,
-    },
-    {
-      field: 'maxPower',
-      headerName: 'Max Power (W)',
-      width: 150,
-    },
-    {
-      field: 'plugTypes',
-      headerName: 'Plug Types',
-      width: 200,
-    },
-    {
-      field: 'powerTypes',
-      headerName: 'Power Types',
-      width: 200,
-    },
-    {
-      field: 'vatRate',
-      headerName: 'VAT Rate (%)',
-      width: 100,
-    },
-    {
-      field: 'stickerCodes',
-      headerName: 'Sticker Codes',
-      width: 150,
-    },
-  ];
-
-  const handleRowClick: GridEventListener<'rowClick'> = (params) => {
-    const stationId = params.row.id;
-    router.push(`/stations/${stationId}`);
-  };
-
-  if (isFetching) return <p>Loading...</p>;
-  if (error) return <p>Error loading stations.</p>;
+  const { data, isFetching } = useFetchStationsQuery({ page, size: pageSize, });
 
   const rows = data?.content ?? [];
+  const router = useRouter();
+
+  const columns = createColumns(router);
 
   return (
-    <DataGrid
-      rows={rows}
-      columns={columns}
-      pageSizeOptions={[5, 10, 25, 50, 100]}
-      pagination
-      paginationMode="server"
-      rowCount={data?.totalElements ?? 0}
-      paginationModel={{
-        page: page,
-        pageSize: pageSize,
-      }}
-      disableColumnSorting 
-      onPaginationModelChange={(model) => {
-        setPage(model.page);
-        setPageSize(model.pageSize);
-      }}
-      onRowClick={handleRowClick}
-      slots={{
-        toolbar: GridToolbar,
-      }}
-    />
+    <Box width="90vw" height="90vh" >
+      <DataGrid
+        loading={isFetching}
+        rows={rows}
+        columns={columns}
+        pageSizeOptions={[5, 10, 25, 50, 100]}
+        pagination
+        paginationMode="server"
+        rowCount={data?.totalElements ?? 0}
+        paginationModel={{
+          page: page,
+          pageSize: pageSize,
+        }}
+        disableColumnSorting
+        onPaginationModelChange={(model) => {
+          setPage(model.page);
+          setPageSize(model.pageSize);
+        }}
+        slots={{
+          toolbar: GridToolbar,
+        }}
+      />
+    </Box>
   );
 };
 

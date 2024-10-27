@@ -1,11 +1,10 @@
 'use client';
 
-import { useSelector } from 'react-redux';
 import StationList from '../StationList';
-import { RootState } from '@/lib/store';
+import { RootState, useAppSelector } from '@/lib/store';
 
 const HomePage = () => {
-  const stationName = useSelector((state: RootState) => state.stationName);
+  const stationName = useAppSelector((state: RootState) => state.stationName);
 
   return (
     <div>

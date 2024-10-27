@@ -2,14 +2,14 @@
 
 import { useFetchStationDetailQuery } from "../../../lib/features/api/stationsApi";
 import { useParams, useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
 import { setStationName } from "../../../lib/features/stationNameSlice";
-import { Button } from "@mui/material";
+import { Box, Button, CircularProgress, Typography } from "@mui/material";
+import { useAppDispatch } from "@/lib/store";
 
 const StationDetail = () => {
   const { id } = useParams();
   const router = useRouter();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const { data, error, isLoading } = useFetchStationDetailQuery(id as string);
 
@@ -21,6 +21,22 @@ const StationDetail = () => {
       dispatch(setStationName(data.stationName));
     }
   };
+
+  if (isLoading) {
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
+        <CircularProgress />
+      </Box>
+    );
+  }
+
+  if (error) {
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
+        <Typography color="error">Error loading station details.</Typography>
+      </Box>
+    );
+  }
 
   return (
     <div>
