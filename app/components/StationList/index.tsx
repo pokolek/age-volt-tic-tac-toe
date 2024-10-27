@@ -3,8 +3,7 @@
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { useFetchStationsQuery } from "../../../lib/features/api/stationsApi";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import createColumns from "@/app/utils/columns";
+import columns from "@/app/utils/columns";
 import { Box } from "@mui/material";
 
 const StationList = () => {
@@ -13,9 +12,6 @@ const StationList = () => {
   const { data, isFetching } = useFetchStationsQuery({ page, size: pageSize, });
 
   const rows = data?.content ?? [];
-  const router = useRouter();
-
-  const columns = createColumns(router);
 
   return (
     <Box width="90vw" height="90vh" >

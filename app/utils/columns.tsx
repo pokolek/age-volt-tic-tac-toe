@@ -1,7 +1,7 @@
 import { GridColDef } from "@mui/x-data-grid";
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import Link from "next/link";
 
-const createColumns = (router: AppRouterInstance): GridColDef[] => [
+const columns: GridColDef[] = [
   {
     field: 'stationName',
     headerName: 'Station Name',
@@ -9,13 +9,10 @@ const createColumns = (router: AppRouterInstance): GridColDef[] => [
     renderCell: (params) => {
       const stationId = params.row.id;
 
-      const handleClick = () => {
-        router.push(`/stations/${stationId}`);
-      };
 
       return (
-        <button
-          onClick={handleClick}
+        <Link
+          href={`/stations/${stationId}`}
           style={{
             color: 'blue',
             textDecoration: 'underline',
@@ -23,7 +20,7 @@ const createColumns = (router: AppRouterInstance): GridColDef[] => [
           }}
         >
           {params.value}
-        </button>
+        </Link>
       );
     },
   },
@@ -108,4 +105,4 @@ const createColumns = (router: AppRouterInstance): GridColDef[] => [
   },
 ];
 
-export default createColumns;
+export default columns;
